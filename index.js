@@ -1,46 +1,52 @@
-let playerSelection = prompt("Rock, Paper, or Scissors?");
+let playerSelection, computerSelection, yourScore, computerScore;
 
 function getComputerChoice() {
 
     let computerAnswer = Math.floor(Math.random() * 3);
     if (computerAnswer == 0) {
-        console.log("rock");
         return "rock";
     } else if (computerAnswer == 1) {
-        console.log("paper");
         return "paper";
-    } else {
-        console.log("scissors");
-        return "scissors";
-    }
+    } else return "scissors";
     }
 
-    function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
+
+    playerSelection = "rock";
+    computerSelection = getComputerChoice();
+    
+    if (playerSelection == computerSelection) {
+        return 0;
+
+    } else if (playerSelection == 'rock' && computerSelection == 'scissors' || playerSelection == 'paper' && computerSelection == 'rock' || playerSelection == 'scissors' && computerSelection == 'paper') {
+        yourScore += 1;
         
-        playerSelection = playerSelection.toLowerCase();
-
-        if (playerSelection == computerSelection) {
-            return "It's a Tie!";
-
-        } else if (playerSelection == 'rock' && computerSelection == 'scissors' ||
-        playerSelection == 'paper' && computerSelection == 'rock' ||
-        playerSelection == 'scissors' && computerSelection == 'paper') {
-            return "Congrats! You Win!";
-
-        } else if (playerSelection == 'scissors' && computerSelection == 'rock' ||
-        playerSelection == 'rock' && computerSelection == 'paper' ||
-        playerSelection == 'paper' && computerSelection == 'scissors') {
-            return "Too Bad! You Lose!";
-        }
+    } else if (playerSelection == 'scissors' && computerSelection == 'rock' || playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'scissors') {
+        computerScore += 1;
     }
+}
 
-    const computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection));
+function game() {
 
-    function game() {
-        for (let i = 0; i < 5; i++) {
-            if (playRound() == "Congrats! You Win!");
-            console.log(i);
+    yourScore = 0;
+    computerScore = 0;
+
+    for (let round = 1; round < 6; round++) {
+
+        playRound(playerSelection, computerSelection);
+        console.log(round);
+        
+        if (playRound() === 1) {
+            yourScore += 1;
+            return yourScore;
+        } else if (playRound() === -1) {
+            computerScore += 1;
+            return computerScore;
         }
+        
+        let gameStr = "Your Hand: " + playerSelection + "\nComputer Hand: " + computerSelection + " \nYour Score: " + yourScore + " \nComputer Score: " + computerScore;
+        console.log(gameStr);
     }
-
+        }
+    
+    game();

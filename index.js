@@ -1,5 +1,7 @@
-let playerSelection, computerSelection, yourScore, computerScore;
+let yourScore = 0 
+let computerScore;
 
+//get the computer's hand//
 function getComputerChoice() {
 
     let computerAnswer = Math.floor(Math.random() * 3);
@@ -10,43 +12,51 @@ function getComputerChoice() {
     } else return "scissors";
     }
 
+// decide who wins the round. 1 if player wins, -1 if computer wins, 0 if draw//
 function playRound(playerSelection, computerSelection) {
 
-    playerSelection = "rock";
-    computerSelection = getComputerChoice();
+    playerSelection = prompt("Choose Rock, Paper, or Scissors" );
+    playerSelection = playerSelection.toLowerCase();
+    computerSelection = getComputerChoice()
+    let gameStr = "Your Hand: " + playerSelection + "\nComputer Hand: " + computerSelection;
+    console.log(gameStr);
     
-    if (playerSelection == computerSelection) {
-        return 0;
-
-    } else if (playerSelection == 'rock' && computerSelection == 'scissors' || playerSelection == 'paper' && computerSelection == 'rock' || playerSelection == 'scissors' && computerSelection == 'paper') {
-        yourScore += 1;
+    if (playerSelection == 'rock' && computerSelection == 'scissors' || playerSelection == 'paper' && computerSelection == 'rock' || playerSelection == 'scissors' && computerSelection == 'paper') {
+        return 1;
         
     } else if (playerSelection == 'scissors' && computerSelection == 'rock' || playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'scissors') {
-        computerScore += 1;
-    }
+        return -1;
+        
+    } else return 0;
 }
 
-function game() {
+function newGame() {
 
     yourScore = 0;
     computerScore = 0;
 
     for (let round = 1; round < 6; round++) {
-
-        playRound(playerSelection, computerSelection);
         console.log(round);
-        
-        if (playRound() === 1) {
+        let result = parseInt(playRound())
+
+        if (result == 1) {
             yourScore += 1;
-            return yourScore;
-        } else if (playRound() === -1) {
+        } else if (result == -1) {
             computerScore += 1;
-            return computerScore;
         }
-        
-        let gameStr = "Your Hand: " + playerSelection + "\nComputer Hand: " + computerSelection + " \nYour Score: " + yourScore + " \nComputer Score: " + computerScore;
-        console.log(gameStr);
+
+        let gameScore = "Your Score: " + yourScore + " \nComputer Score: " + computerScore;
+        console.log(gameScore);
     }
-        }
-    
-    game();
+
+    if (yourScore > computerScore) {
+        console.log("WINNER!")
+        return "WINNER!";
+    } else if (computerScore > yourScore) {
+        console.log("LOSER!")
+        return "LOSER!";
+    } else 
+    console.log("DRAW!");
+    return "DRAW!";
+}
+newGame()

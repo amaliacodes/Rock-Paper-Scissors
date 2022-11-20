@@ -1,4 +1,4 @@
-let yourScore = 0 
+let yourScore;
 let computerScore;
 
 //get the computer's hand//

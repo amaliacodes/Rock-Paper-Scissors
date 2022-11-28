@@ -1,47 +1,62 @@
-let playerSelection = prompt("Rock, Paper, or Scissors?");
+let yourScore;
+let computerScore;
 
+//get the computer's hand//
 function getComputerChoice() {
 
     let computerAnswer = Math.floor(Math.random() * 3);
     if (computerAnswer == 0) {
-        console.log("rock");
         return "rock";
     } else if (computerAnswer == 1) {
-        console.log("paper");
         return "paper";
-    } else {
-        console.log("scissors");
-        return "scissors";
-    }
+    } else return "scissors";
     }
 
-    function playRound(playerSelection, computerSelection) {
+// decide who wins the round. 1 if player wins, -1 if computer wins, 0 if draw//
+function playRound(playerSelection, computerSelection) {
+
+    playerSelection = prompt("Choose Rock, Paper, or Scissors" );
+    playerSelection = playerSelection.toLowerCase();
+    computerSelection = getComputerChoice()
+    let gameStr = "Your Hand: " + playerSelection + "\nComputer Hand: " + computerSelection;
+    console.log(gameStr);
+    
+    if (playerSelection == 'rock' && computerSelection == 'scissors' || playerSelection == 'paper' && computerSelection == 'rock' || playerSelection == 'scissors' && computerSelection == 'paper') {
+        return 1;
         
-        playerSelection = playerSelection.toLowerCase();
+    } else if (playerSelection == 'scissors' && computerSelection == 'rock' || playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'scissors') {
+        return -1;
+        
+    } else return 0;
+}
 
-        if (playerSelection == computerSelection) {
-            return "It's a Tie!";
+function newGame() {
 
-        } else if (playerSelection == 'rock' && computerSelection == 'scissors' ||
-        playerSelection == 'paper' && computerSelection == 'rock' ||
-        playerSelection == 'scissors' && computerSelection == 'paper') {
-            return "Congrats! You Win!";
+    yourScore = 0;
+    computerScore = 0;
 
-        } else if (playerSelection == 'scissors' && computerSelection == 'rock' ||
-        playerSelection == 'rock' && computerSelection == 'paper' ||
-        playerSelection == 'paper' && computerSelection == 'scissors') {
-            return "Too Bad! You Lose!";
+    for (let round = 1; round < 6; round++) {
+        console.log(round);
+        let result = parseInt(playRound())
+
+        if (result == 1) {
+            yourScore += 1;
+        } else if (result == -1) {
+            computerScore += 1;
         }
+
+        let gameScore = "Your Score: " + yourScore + " \nComputer Score: " + computerScore;
+        console.log(gameScore);
     }
 
-    const computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection));
-
-    function game() {
-        for (let i = 0; i < 5; i++) {
-            if (playRound() == "Congrats! You Win!");
-            console.log(i);
-        }
-    }
-game();
-
+    if (yourScore > computerScore) {
+        console.log("WINNER!")
+        return "WINNER!";
+    } else if (computerScore > yourScore) {
+        console.log("LOSER!")
+        return "LOSER!";
+    } else 
+    console.log("DRAW!");
+    return "DRAW!";
+}
+newGame()

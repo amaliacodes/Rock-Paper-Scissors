@@ -15,7 +15,7 @@ function getComputerChoice() {
 // decide who wins the round. 1 if player wins, -1 if computer wins, 0 if draw//
 function playRound(playerSelection, computerSelection) {
 
-    playerSelection = prompt("Choose Rock, Paper, or Scissors" );
+    playerSelection = button;
     playerSelection = playerSelection.toLowerCase();
     computerSelection = getComputerChoice()
     let gameStr = "Your Hand: " + playerSelection + "\nComputer Hand: " + computerSelection;
@@ -35,7 +35,7 @@ function newGame() {
     yourScore = 0;
     computerScore = 0;
 
-    for (let round = 1; round < 6; round++) {
+    for (let round = 1; round ; round++) {
         console.log(round);
         let result = parseInt(playRound())
 
@@ -60,3 +60,10 @@ function newGame() {
     return "DRAW!";
 }
 newGame()
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.textContent.toLowerCase());
+    });
+});

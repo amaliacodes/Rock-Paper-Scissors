@@ -16,25 +16,25 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     computerSelection = getComputerChoice();
 
-    let gameStr = "Your Hand: " + playerSelection + "\nComputer Hand: " + computerSelection;
-    console.log(gameStr);
+    document.getElementById('yourgamestring').textContent = "You chose " + playerSelection;
+    document.getElementById('computergamestring').textContent = "The computer chose " + computerSelection;
     
     if (
         (playerSelection == 'rock' && computerSelection == 'scissors') || 
         (playerSelection == 'paper' && computerSelection == 'rock') || 
         (playerSelection == 'scissors' && computerSelection == 'paper') 
     ){
-        console.log("You Win this round!");
+        document.getElementById('roundresult').textContent = "You Win this round!";
         return 1;
     } else if (
         (playerSelection == 'scissors' && computerSelection == 'rock') || 
         (playerSelection == 'rock' && computerSelection == 'paper') || 
         (playerSelection == 'paper' && computerSelection == 'scissors')
      ) {
-        console.log("Computer Wins this round!");
+        document.getElementById('roundresult').textContent = "Computer Wins this round!";
         return -1;
     } else {
-        console.log("This round is a draw!");
+        document.getElementById('roundresult').textContent = "This round is a draw!";
         return 0;
 }};
 
@@ -44,7 +44,7 @@ function newGame() {
     computerScore = 0;
     round = 0;
 
-    document.getElementById('roundname').textContent = "Round " + round;
+    document.getElementById('roundname').textContent = "Round: " + round;
 
     document.getElementById("output").addEventListener("click", function(event) {
         if (event.target.classList.contains("choice-button")) {
@@ -61,23 +61,29 @@ function newGame() {
         "Your Score: " + yourScore + " \nComputer Score: " + computerScore;
         console.log(gameScore);
 
-        document.getElementById('score').textContent = "Your Score: " + yourScore + " | Computer Score: " + computerScore;
+        document.getElementById('score').textContent = yourScore;
+        document.getElementById('score2').textContent = computerScore
         round++
         document.getElementById('roundname').textContent = "Round " + round;
+        var popup = document.querySelector('.popup-content');
+        var restart = document.querySelector('.restart');
 
         if (yourScore >= 5 || computerScore >= 5) {
             if (yourScore > computerScore) {
         console.log("WINNER!");
+        popup.classList.toggle('active');
         document.getElementById('game-result').textContent = "You won the game!";
     } else if (computerScore > yourScore) {
         console.log("LOSER!");
+        popup.classList.toggle('active');
         document.getElementById('game-result').textContent = "You lost the game!";
-    } else {
-        console.log("DRAW!");
-        document.getElementById('game-result').textContent = "The game ended in a draw.";
-    }}}
+    }
+    restart.addEventListener('click', function() {
+        window.location.reload();
+        popup.classList.remove('active');
+    });
+}}
 })}
 
 newGame()
-
 }

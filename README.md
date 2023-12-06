@@ -39,4 +39,4 @@ Creating a multiplayer option to play against friends.
 This game was developed by Ella, a software engineer bootcamp graduate based in Manchester, England. As an aspiring software developer, I am passionate about creating engaging and user-friendly web applications. This project is a testament to my growing skills in front-end development.
 
 ## Contact
-For any queries or suggestions, feel free to [email me](11yekinie@gmail.com).
+For any queries or suggestions, feel free to email me at 11yekinie@gmail.com.

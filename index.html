@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css">
-        <title>Page Title</title>
-    </head>
-    <body>
-      <script src="index.js"></script>
-      <div id="bg-element">
-        <div id="title-element">
-          <h1 id="title"> ROCK, PAPER, SCISSORS</h1>
-          <p id="context">First to 5!</p>
-        </div>
-          <p id="roundname"></p>
-        <div id="output">
-        <button id="rock-button" class="choice-button">ROCK</button>
-        <button id="paper-button" class="choice-button">PAPER</button>
-        <button id="scissors-button" class="choice-button">SCISSORS</button>
-      </div>
-      <div id="gameresult">
-        <div id="gamestring">
-        <p id="yourgamestring"></p>
-        <p id="computergamestring"></p>
-        <p id="roundresult"></p>
-        </div>
-        <div id="scoreboard">
-        <p id="yourscore">You <br> <span id="score">0</span></p>
-        <p id="vs">:</p>
-        <p id="computerscore">Computer <br> <span id="score2">0</span></p>
-        </div>
-        <div class="popup-content">
-        <p id="game-result"></p>
-        <button class="restart">New Game</button>
-        </div>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js" defer></script>
+  <title>Rock, Paper, Scissors</title>
+</head>
+
+<body>
+  <header id="bg-element">
+    <div id="title-element">
+      <h1 id="title"> ROCK, PAPER, SCISSORS</h1>
+      <p id="context">First to 5!</p>
+    </div>
+    <p id="roundname"></p>
+  </header>
+  <div id="output">
+    <button id="rock-button" class="choice-button">ROCK</button>
+    <button id="paper-button" class="choice-button">PAPER</button>
+    <button id="scissors-button" class="choice-button">SCISSORS</button>
+  </div>
+  <div id="gameresult">
+    <div id="gamestring">
+      <p id="yourgamestring"></p>
+      <p id="computergamestring"></p>
+      <p id="roundresult"></p>
+    </div>
+    <div id="scoreboard">
+      <p id="yourscore">You <br> <span id="score">0</span></p>
+      <p id="vs">:</p>
+      <p id="computerscore">Computer <br> <span id="score2">0</span></p>
+    </div>
+    <div class="popup-content">
+      <p id="game-result"></p>
+      <button class="restart">New Game</button>
     </div>
   </div>
-  </body>
-  </html>
+</body>
 
+</html>
